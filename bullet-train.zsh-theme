@@ -62,6 +62,9 @@ fi
 if [ ! -n "${BULLETTRAIN_STATUS_ERROR_BG+1}" ]; then
   BULLETTRAIN_STATUS_ERROR_BG=red
 fi
+if [ ! -n "${BULLETTRAIN_STATUS_ERROR_FG+1}" ]; then
+  BULLETTRAIN_STATUS_ERROR_FG=white
+fi
 if [ ! -n "${BULLETTRAIN_STATUS_FG+1}" ]; then
   BULLETTRAIN_STATUS_FG=white
 fi
@@ -637,7 +640,7 @@ prompt_status() {
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⚙"
 
   if [[ -n "$symbols" && $RETVAL -ne 0 ]]; then
-    prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_FG "$symbols"
+    prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_ERROR_FG "$symbols"
   elif [[ -n "$symbols" ]]; then
     prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
   fi
